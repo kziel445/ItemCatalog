@@ -13,7 +13,10 @@ MongoDB.Driver
 
 ## Compilation
 
+start docker
 `docker run -d --rm --name {name} -p 27017:27017 -v mongodbdata:/data/db mongo`
+
+Use swagger or postman
 
 ### Database
 
