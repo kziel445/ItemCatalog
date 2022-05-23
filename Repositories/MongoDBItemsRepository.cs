@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Catalog.Entities;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Catalog.Repositories
@@ -12,7 +10,6 @@ namespace Catalog.Repositories
         private const string dataBaseName = "Catalog";
         private const string colletionName = "Items";
         private readonly IMongoCollection<Item> itemsColection;
-        private readonly FilterDefinitionBuilder<Item> filterBuilder = Builders<Item>.Filter;
 
         public MongoDBItemsRepository(IMongoClient mongoClient)
         {
@@ -20,34 +17,29 @@ namespace Catalog.Repositories
             itemsColection = database.GetCollection<Item>(colletionName);
         }
         
-        public async Task CreateItemAsync(Item item)
+        public void CreateItem(Item item)
         {
-            await itemsColection.InsertOneAsync(item);
+            itemsColection.InsertOne(item);
         }
 
-        public async Task DeleteItemAsync(Guid id)
+        public void DeleteItem(Guid id)
         {
-            var filter = filterBuilder.Eq(item => item.Id, id);
-            await itemsColection.DeleteOneAsync(filter);
+            throw new NotImplementedException();
         }
 
-        public async Task<Item> GetItemAsync(Guid id)
+        public Item GetItem(Guid id)
         {
-            var filter = filterBuilder.Eq(item => item.Id, id);
-            
-            return await itemsColection.Find(filter).SingleOrDefaultAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync()
+        public IEnumerable<Item> GetItems()
         {
-            return await itemsColection.Find(new BsonDocument()).ToListAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task UpdateItemAsync(Item item)
+        public void UpdateItem(Item item)
         {
-            var filter = filterBuilder.Eq(existingItem => existingItem.Id, item.Id);
-
-            await itemsColection.ReplaceOneAsync(filter, item);
+            throw new NotImplementedException();
         }
     }
 }

@@ -41,11 +41,7 @@ namespace Catalog
             });
             services.AddSingleton<IItemRepository, MongoDBItemsRepository>();
 
-            services.AddControllers(options => {
-                options.SuppressAsyncSuffixInActionNames = false;
-            }
-
-            );
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "catalog", Version = "v1" });
